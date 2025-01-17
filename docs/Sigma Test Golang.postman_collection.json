@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "3d00d02a-17f5-4aad-a94d-d20c2b7e74fb",
+		"name": "Sigma Test Golang",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9217500"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Post User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nik",
+									"value": "243234344",
+									"type": "text"
+								},
+								{
+									"key": "full_name",
+									"value": "Adi Nugroho",
+									"type": "text"
+								},
+								{
+									"key": "legal_name",
+									"value": "Adi",
+									"type": "text"
+								},
+								{
+									"key": "tempat_lahir",
+									"value": "kediri",
+									"type": "text"
+								},
+								{
+									"key": "tanggal_lahir",
+									"value": "1998-08-02",
+									"type": "text"
+								},
+								{
+									"key": "foto_selfie",
+									"value": "-",
+									"type": "text"
+								},
+								{
+									"key": "foto_ktp",
+									"type": "file",
+									"src": "/C:/Users/asus/Downloads/af56431ab4ed26aad25cf4e7d9ed1e6c.jpg"
+								},
+								{
+									"key": "gaji",
+									"value": "500000",
+									"type": "text"
+								},
+								{
+									"key": "foto_selfie",
+									"type": "file",
+									"src": "/C:/Users/asus/Downloads/Delux_Cookies_Cream_Chocolate_FIX_Halal_compressed.png"
+								}
+							]
+						},
+						"url": "localhost:3131/api/user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenor",
+			"item": [
+				{
+					"name": "Get Tenor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3131/api/tenor"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Tenor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":\"affe0a6a8e58f36bab0dcc1cb8bbc8c9\",\r\n    \"tenor\" : 6,\r\n    \"tenor_max_limit\" : 2000000,\r\n    \"tenor_interest\" : 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3131/api/tenor"
+					},
+					"response": []
+				},
+				{
+					"name": "Put Tenor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Tenor ID</th>\r",
+									"        <th>User ID</th>\r",
+									"        <th>Tenor</th>\r",
+									"        <th>Tenor Max Limit</th>\r",
+									"        <th>Tenor Interest</th>\r",
+									"        <th>Status</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>{{response.data.tenor_id}}</td>\r",
+									"        <td>{{response.data.user_id}}</td>\r",
+									"        <td>{{response.data.tenor}}</td>\r",
+									"        <td>{{response.data.tenor_max_limit}}</td>\r",
+									"        <td>{{response.data.tenor_interest}}</td>\r",
+									"        <td>{{response.status}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.json()}\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"e9f77b213b7708fc51b095eedaae467c\",\r\n    \"tenor\": 1,\r\n    \"tenor_max_limit\": 100000,\r\n    \"tenor_interest\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3131/api/tenor/ddaaeb7b6bae734173bb942b69836e7f"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tenor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:3131/api/tenor/ddaaeb7b6bae734173bb942b69836e7f"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Perusahaan",
+			"item": [
+				{
+					"name": "Get Perusahaan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3131/api/perusahaan"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Perusahaan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perusahaan_nama\":\"PT ABC\",\r\n    \"perusahaan_fee\" : 25000,\r\n    \"perusahaan_alamat\" : \"Bali\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3131/api/perusahaan"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Perusahaan",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perusahaan_nama\":\"PT ABCD\",\r\n    \"perusahaan_fee\" : 25000,\r\n    \"perusahaan_alamat\" : \"Bali\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3131/api/perusahaan/6e323906d6f44721eb79183cbddb33b9"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Perusahaan",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:3131/api/perusahaan/6e323906d6f44721eb79183cbddb33b9"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PerusahaanAsset",
+			"item": [
+				{
+					"name": "GET Perusahaan Asset",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3131/api/perusahaanasset"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Perusahaan Asset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perusahaan_id\":\"9168f757a958b2fe74bfc3f476e7afff\",\r\n    \"perusahaan_asset_nama\" : \"Mobil\",\r\n    \"perusahaan_asset_otr_price\" : 1000000,\r\n    \"perusahaan_asset_stock_availability\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3131/api/perusahaanasset"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Post Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction_user_id\" : \"affe0a6a8e58f36bab0dcc1cb8bbc8c9\",\r\n    \"transaction_tenor_id\" : \"fc4f7247e20ee1d179b219286b558329\",\r\n    \"transaction_perusahaan_asset_id\" : \"2e9c3e91ae9703703ab4956db442c7cf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3131/api/transaction"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
