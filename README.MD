@@ -10,7 +10,7 @@ proses developing
 - The clean architecture that I made was based on [here](https://github.com/herryg91/go-clean-architecture)
 
 ## Requirement
-- MySQL and Redis for Database
+- MySQL for Database
 
 ## Library
 - [Gorilla mux](https://github.com/gorilla/mux) for routing
