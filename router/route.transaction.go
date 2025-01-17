@@ -18,4 +18,6 @@ func TransactionRouter(db *gorm.DB, validate *validator.Validate, router *mux.Ro
 	perusahaanAssetRepository := perusahaanasset_repository.New(db)
 	transactionController := usecase_transaction.NewUseCase(transactionRepository, userRepository, tenorRepository, perusahaanAssetRepository, validate)
 	router.HandleFunc("/api/transaction", transactionController.Create).Methods("POST")
+	router.HandleFunc("/api/transaction", transactionController.FindAll).Methods("GET")
+
 }

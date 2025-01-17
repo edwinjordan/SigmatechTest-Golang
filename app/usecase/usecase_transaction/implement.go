@@ -7,6 +7,7 @@ import (
 	"github.com/edwinjordan/SigmatechTest-Golang/app/repository"
 	"github.com/edwinjordan/SigmatechTest-Golang/config"
 	"github.com/edwinjordan/SigmatechTest-Golang/entity"
+	"github.com/edwinjordan/SigmatechTest-Golang/handler"
 	"github.com/edwinjordan/SigmatechTest-Golang/pkg/exceptions"
 	"github.com/edwinjordan/SigmatechTest-Golang/pkg/helpers"
 	"github.com/go-playground/validator/v10"
@@ -28,6 +29,22 @@ func NewUseCase(transactionRepo repository.TransactionRepository, userRepo repos
 		PerusahaanAssetRepository: PerusahaanAssetRepo,
 		Validate:                  validate,
 	}
+}
+
+// FindAll implements UseCase.
+func (controller *UseCaseImpl) FindAll(w http.ResponseWriter, r *http.Request) {
+	vars := r.URL.Query()
+
+	dataResponse := controller.TransactionRepository.FindAll(r.Context(), map[string]interface{}{
+		"transaction_user_id": vars.Get("user_id"),
+	})
+
+	webResponse := handler.WebResponse{
+		Error:   false,
+		Message: config.LoadMessage().SuccessGetData,
+		Data:    dataResponse,
+	}
+	helpers.WriteToResponseBody(w, webResponse)
 }
 
 // Create implements UseCase.
