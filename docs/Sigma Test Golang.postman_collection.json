@@ -285,6 +285,31 @@
 						"url": "localhost:3131/api/transaction"
 					},
 					"response": []
+				},
+				{
+					"name": "Get Transaction By User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3131/api/transaction?user_id=affe0a6a8e58f36bab0dcc1cb8bbc8c9",
+							"host": [
+								"localhost"
+							],
+							"port": "3131",
+							"path": [
+								"api",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "affe0a6a8e58f36bab0dcc1cb8bbc8c9"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
