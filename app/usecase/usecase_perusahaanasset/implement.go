@@ -29,15 +29,24 @@ func (controller *UseCaseImpl) Create(w http.ResponseWriter, r *http.Request) {
 
 	err := controller.Validate.Struct(dataRequest)
 	helpers.PanicIfError(err)
-	perusahaanasset := controller.PerusahaanAssetRepository.Create(r.Context(), dataRequest)
+	if dataRequest.PerusahaanAssetNama != "" {
+		perusahaanasset := controller.PerusahaanAssetRepository.Create(r.Context(), dataRequest)
 
-	webResponse := map[string]interface{}{
-		"code":   200,
-		"status": config.LoadMessage().SuccessCreateData,
-		"data":   perusahaanasset,
+		webResponse := map[string]interface{}{
+			"code":   200,
+			"status": config.LoadMessage().SuccessCreateData,
+			"data":   perusahaanasset,
+		}
+
+		helpers.WriteToResponseBody(w, webResponse)
+	} else {
+		webResponse := map[string]interface{}{
+			"code":   400,
+			"status": config.LoadMessage().GetDataByIdNotFound,
+		}
+
+		helpers.WriteToResponseBody(w, webResponse)
 	}
-
-	helpers.WriteToResponseBody(w, webResponse)
 }
 
 // FindAll implements UseCase.

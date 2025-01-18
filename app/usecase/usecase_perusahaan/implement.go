@@ -34,15 +34,24 @@ func (controller *UseCaseImpl) Create(w http.ResponseWriter, r *http.Request) {
 
 	err := controller.Validate.Struct(dataRequest)
 	helpers.PanicIfError(err)
-	perusahaan := controller.PerusahaanRepository.Create(r.Context(), dataRequest)
+	if dataRequest.PerusahaanNama != "" {
+		perusahaan := controller.PerusahaanRepository.Create(r.Context(), dataRequest)
 
-	webResponse := map[string]interface{}{
-		"code":   200,
-		"status": config.LoadMessage().SuccessCreateData,
-		"data":   perusahaan,
+		webResponse := map[string]interface{}{
+			"code":   200,
+			"status": config.LoadMessage().SuccessCreateData,
+			"data":   perusahaan,
+		}
+
+		helpers.WriteToResponseBody(w, webResponse)
+	} else {
+		webResponse := map[string]interface{}{
+			"code":   400,
+			"status": config.LoadMessage().GetDataByIdNotFound,
+		}
+
+		helpers.WriteToResponseBody(w, webResponse)
 	}
-
-	helpers.WriteToResponseBody(w, webResponse)
 }
 
 // Delete implements UseCase.
